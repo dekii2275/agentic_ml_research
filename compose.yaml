@@ -1,0 +1,49 @@
+name: agentic-ml-research
+
+services:
+  api:
+    build:
+      context: ./apps/api
+    environment:
+      COPILOT_API_ENVIRONMENT: "${COPILOT_API_ENVIRONMENT:-development}"
+      COPILOT_API_LOG_LEVEL: "${COPILOT_API_LOG_LEVEL:-INFO}"
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import sys, urllib.request;
+          response = urllib.request.urlopen("http://127.0.0.1:8000/health", timeout=2);
+          sys.exit(0 if response.status == 200 else 1)
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      API_INTERNAL_URL: "http://api:8000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - >-
+          fetch("http://127.0.0.1:3000")
+            .then((response) => process.exit(response.ok ? 0 : 1))
+            .catch(() => process.exit(1))
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s

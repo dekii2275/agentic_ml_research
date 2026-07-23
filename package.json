@@ -1,0 +1,17 @@
+{
+  "name": "agentic-ml-research",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=24.14.0 <25",
+    "pnpm": "11.9.0"
+  },
+  "scripts": {
+    "web:dev": "pnpm --filter @agentic-ml/web dev",
+    "web:build": "pnpm --filter @agentic-ml/web build",
+    "web:start": "pnpm --filter @agentic-ml/web start",
+    "web:lint": "pnpm --filter @agentic-ml/web lint",
+    "web:typecheck": "pnpm --filter @agentic-ml/web typecheck",
+    "web:test": "pnpm --filter @agentic-ml/web test"
+  }
+}
