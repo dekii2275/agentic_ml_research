@@ -19,6 +19,80 @@ ML và tạo báo cáo có thể tái lập.
 - `pyproject.toml` khi được tạo phải khai báo `requires-python = ">=3.12,<3.13"`.
 - Local version được khai báo trong `.python-version`; CI chỉ chạy Python 3.12.
 - Docker image phải dùng Python 3.12 và được pin tới patch version/digest trong release.
+- Web foundation dùng Node.js 24.14.0 và pnpm 11.9.0, được pin trong repository.
+
+## Chạy M0-01 ở local
+
+### Yêu cầu
+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- Node.js 24.14.0
+- Corepack/pnpm 11.9.0
+- Docker Desktop với Docker Compose v2 nếu chạy bằng container
+
+Không dùng Python 3.14 global của máy. `uv` sẽ quản lý interpreter và `.venv` Python 3.12
+riêng cho API.
+
+### Cài dependency
+
+Trong PowerShell tại repository root:
+
+```powershell
+uv python install 3.12
+uv sync --project apps/api
+
+corepack enable
+corepack prepare pnpm@11.9.0 --activate
+pnpm install --frozen-lockfile
+```
+
+### Chạy từng service
+
+Terminal API:
+
+```powershell
+uv run --project apps/api uvicorn app.main:app --app-dir apps/api --reload
+```
+
+Terminal web:
+
+```powershell
+$env:API_INTERNAL_URL = "http://127.0.0.1:8000"
+pnpm web:dev
+```
+
+Mở `http://127.0.0.1:3000`; API docs ở `http://127.0.0.1:8000/docs`.
+
+### Chạy bằng Docker
+
+```powershell
+Copy-Item .env.example .env
+docker compose up --build
+```
+
+Compose khởi động API trước, chờ `/health` thành công rồi mới khởi động web. `.env` là file
+local và không được commit.
+
+### Quality checks
+
+Backend:
+
+```powershell
+uv run --project apps/api ruff format --check apps/api
+uv run --project apps/api ruff check apps/api
+uv run --project apps/api mypy --config-file apps/api/pyproject.toml apps/api/app apps/api/tests
+uv run --project apps/api pytest apps/api/tests
+```
+
+Frontend:
+
+```powershell
+pnpm web:lint
+pnpm web:typecheck
+pnpm web:test
+$env:API_INTERNAL_URL = "http://127.0.0.1:8000"
+pnpm web:build
+```
 
 ## Tài liệu
 

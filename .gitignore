@@ -223,6 +223,7 @@ reports/generated/
 node_modules/
 .next/
 out/
+*.tsbuildinfo
 
 # Local environment variants (keep the documented example)
 .env.*
