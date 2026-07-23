@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Copilot Slice"
+  short_description: "Ship typed full-stack copilot feature slices"
+  default_prompt: "Use $build-copilot-slice to implement this feature end to end across UI, API, jobs, and persistence."

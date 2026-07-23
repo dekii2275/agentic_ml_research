@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Agentic ML Feature"
+  short_description: "Design scoped, reviewable Agentic ML features"
+  default_prompt: "Use $plan-agentic-ml-feature to turn this feature request into an architecture-ready implementation plan."

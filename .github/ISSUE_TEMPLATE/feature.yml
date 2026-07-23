@@ -1,0 +1,45 @@
+name: Feature
+description: Propose a measurable product or platform outcome
+title: "[Feature]: "
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user outcome
+      description: Describe the user, current limitation, and measurable outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: State what is included and explicitly excluded.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Given ..., when ..., then ...
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Highest risk
+      options:
+        - Normal application change
+        - Agent or ML behavior
+        - Contract or data migration
+        - Sandbox or security boundary
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Test and evaluation plan
+      description: List unit, integration, e2e, eval, and security evidence required.
+    validations:
+      required: true

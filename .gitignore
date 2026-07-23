@@ -209,6 +209,25 @@ tempCodeRunnerFile.py
 # PyPI configuration file
 .pypirc
 
+# Agentic ML Copilot local/runtime state
+tmp/
+uploads/
+artifacts/
+models/
+mlruns/
+.sandbox-work/
+data/private/
+reports/generated/
+
+# Node/Next.js
+node_modules/
+.next/
+out/
+
+# Local environment variants (keep the documented example)
+.env.*
+!.env.example
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

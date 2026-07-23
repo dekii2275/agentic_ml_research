@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Agent Workflow"
+  short_description: "Implement reliable LangGraph agent workflows"
+  default_prompt: "Use $build-agent-workflow to implement this agent workflow with typed state, approvals, retries, and budgets."

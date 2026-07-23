@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build ML Experiment"
+  short_description: "Build leakage-safe reproducible ML experiments"
+  default_prompt: "Use $build-ml-experiment to implement this tabular ML experiment safely and reproducibly."

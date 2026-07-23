@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate Agentic Copilot"
+  short_description: "Create benchmarks, traces, and quality gates"
+  default_prompt: "Use $evaluate-agentic-copilot to add measurable evaluation and observability for this behavior."

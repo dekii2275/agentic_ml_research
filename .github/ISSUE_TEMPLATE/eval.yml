@@ -1,0 +1,38 @@
+name: Evaluation case
+description: Add a regression or benchmark case for agent or ML behavior
+title: "[Eval]: "
+labels: ["type:eval"]
+body:
+  - type: textarea
+    id: capability
+    attributes:
+      label: Capability under evaluation
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input fixture
+      description: Describe or link a synthetic/versioned dataset and user request.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected invariants
+      description: Prefer objective properties over a single exact natural-language answer.
+    validations:
+      required: true
+  - type: textarea
+    id: scoring
+    attributes:
+      label: Scoring and threshold
+    validations:
+      required: true
+  - type: textarea
+    id: failure
+    attributes:
+      label: Failure prevented
+      description: Explain the regression, safety issue, or quality risk this case catches.
+    validations:
+      required: true

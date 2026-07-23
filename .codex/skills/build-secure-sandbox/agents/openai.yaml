@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Secure Sandbox"
+  short_description: "Implement isolated execution for generated code"
+  default_prompt: "Use $build-secure-sandbox to implement and test this untrusted-code execution feature."
